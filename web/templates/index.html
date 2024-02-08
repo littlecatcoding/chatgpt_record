@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search</title>
+    <style>
+        /* Centering the container */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Centering the header */
+        #header {
+            text-align: center;
+        }
+
+        /* Style for the search button */
+        #searchForm {
+            display: flex;
+            align-items: center;
+        }
+
+        #searchForm input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensure padding and border are included in the width */
+        }
+
+        #searchForm input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px; /* Add some space between input and button */
+        }
+
+        #searchForm input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Style for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Style for the submit button */
+        #submitButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        #submitButton:hover {
+            background-color: #45a049;
+        }
+
+        /* Hide initially */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Forecast SHAP</h1>
+        <form action="/" method="post" id="searchForm">
+            <input type="text" name="query" placeholder="Search">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <div id="tableContainer" class="hidden">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <button id="submitButton" class="hidden">Submit</button>
+    </div>
+
+    <script>
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("tableContainer").classList.remove("hidden");
+            document.getElementById("submitButton").classList.remove("hidden");
+        });
+
+        document.getElementById("submitButton").addEventListener("click", function() {
+            window.location.href = "/show_cat_image"; // Corrected URL
+        });
+    </script>
+</body>
+</html>
+
